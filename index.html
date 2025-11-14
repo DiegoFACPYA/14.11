@@ -85,13 +85,14 @@
   </style>
 </head>
 <body>
+
+  <!-- Botón de música -->
   <button id="playMusic" style="position:fixed; top:20px; left:20px; padding:10px 20px; background:#ff4f81; color:white; border:none; border-radius:10px; font-size:1rem; cursor:pointer; z-index:9999;">
     Activar música ❤️
   </button>
-  <!-- VIDEO VISIBLE PERO CHIQUITO -->
-<div style="position:fixed; bottom:20px; right:20px; width:200px; height:112px; z-index:9999; border-radius:10px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.3);">
-  
-</div>
+
+  <!-- Contenedor del video/música -->
+  <div id="musicContainer"></div>
 
   <div class="card">
     <h1>Para Ti, Mi Mamoiii ❤</h1> 
@@ -101,7 +102,7 @@
     <div class="heart">❤️</div>
 
     <div class="slideshow" style="width:100%; margin-top:40px; border-radius:15px; overflow:hidden;">
-      <img id="slideImage" src="foto1.jpg" style="width:100%; height:auto; display:block; border-radius:15px; object-fit:contain;">
+      <img id="slideImage" src="Foto1.jpg" style="width:100%; height:auto; display:block; border-radius:15px; object-fit:contain;">
     </div>
 
     <script>
@@ -128,6 +129,7 @@
     </script>
   </div>
 
+  <!-- Textos flotantes -->
   <div class="floating-text">Te amo ❤️</div>
   <div class="floating-text">14 ❤️</div>
   <div class="floating-text">28 ❤️</div>
@@ -171,40 +173,16 @@
     setInterval(placeFloatingText, 6000);
     placeFloatingText();
   </script>
-<script>
-    document.getElementById('playMusic').addEventListener('click', function() {
-      const container = document.getElementById('musicContainer');
-      container.innerHTML = `
-        <iframe
-          width="0"
-          height="0"
-          style="opacity:0; position:absolute;"
-          src="https://www.youtube.com/embed/yhuop3GEf-4?autoplay=1&loop=1&playlist=yhuop3GEf-4"
-          allow="autoplay"
-        ></iframe>`;
-      this.style.display = 'none';
-    });
-  </script>
-  <audio id="miAudio" src="NADIE MAS.mp3" autoplay muted></audio>
-  <script>
-    setTimeout(() => {
-      const audio = document.getElementById('miAudio');
-      audio.muted = false;
-      audio.play();
-    }, 1000);
-  </script>
+
+  <!-- Música local -->
   <audio id="miAudio" src="NADIE MAS.mp3"></audio>
 
   <script>
-    function activarAudio() {
-      const audio = document.getElementById("miAudio");
-      audio.play();
-      document.removeEventListener("click", activarAudio);
-      document.removeEventListener("touchstart", activarAudio);
-    }
-
-    document.addEventListener("click", activarAudio);
-    document.addEventListener("touchstart", activarAudio);
+    document.getElementById('playMusic').addEventListener('click', function() {
+      document.getElementById('miAudio').play();
+      this.style.display = 'none';
+    });
   </script>
+
 </body>
 </html>
